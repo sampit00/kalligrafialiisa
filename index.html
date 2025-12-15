@@ -1,10 +1,237 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Startsida</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalligrafi - Startsida</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #4a4a4a;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            color: #4a4a4a;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 20px 25px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #a8936f;
+        }
+
+        /* Dropdown för Tjänster */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(250, 248, 245, 0.98);
+            min-width: 200px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown-content a {
+            padding: 12px 20px;
+            font-size: 14px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Video Section */
+        .video-section {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .video-section video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .overlay-text h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* Content Block */
+        .content-block {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        /* Om mig Section */
+        .image-column {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image-column img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-column {
+            flex: 1;
+        }
+
+        .text-column h2 {
+            font-size: 2.5rem;
+            color: #a8936f;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .text-column p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .icon-container {
+            margin-top: 30px;
+        }
+
+        .icon-container img {
+            width: 200px;
+            height: auto;
+        }
+
+        /* Background Sections */
+        .beige-section {
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
+        }
+
+        .white-section {
+            background: #ffffff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                padding: 10px 0;
+            }
+
+            nav li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .video-section {
+                height: 50vh;
+                min-height: 300px;
+            }
+
+            .overlay-text h1 {
+                font-size: 2rem;
+            }
+
+            .content-block {
+                flex-direction: column;
+                padding: 50px 20px;
+                gap: 30px;
+            }
+
+            .text-column h2 {
+                font-size: 2rem;
+            }
+
+            .text-column p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav a {
+                padding: 15px 20px;
+                font-size: 14px;
+            }
+
+            .overlay-text h1 {
+                font-size: 1.5rem;
+            }
+
+            .video-section {
+                height: 40vh;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -12,17 +239,24 @@
 <nav>
     <ul>
         <li><a href="index.html">Startsida</a></li>
+        <li class="dropdown">
+            <a href="tjanster.html">Tjänster</a>
+            <div class="dropdown-content">
+                <a href="brudparet.html">Brudparet</a>
+                <a href="foretagare.html">Företagare</a>
+                <a href="annat.html">Annat</a>
+            </div>
+        </li>
+        <li><a href="kurser.html">Kurser</a></li>
         <li><a href="galleri.html">Galleri</a></li>
-        <li><a href="tjanster.html">Tjänster</a></li>
         <li><a href="kontakt.html">Kontakt</a></li>
-        <li><a href="brollop.html">Bröllop</a></li>
     </ul>
 </nav>
 
 <!-- Video Section -->
 <section class="video-section">
     <video autoplay muted loop playsinline>
-        <source src="animations\kalligrafiilta.mp4" type="video/mp4" />
+        <source src="animations/kalligrafiilta.mp4" type="video/mp4">
         Din webbläsare stöder inte videouppspelning.
     </video>
     <div class="overlay-text">
@@ -30,36 +264,32 @@
     </div>
 </section>
 
-<!-- About Section: full width section wrapping a centered content block -->
-<section>
+<!-- Om mig Section -->
+<section class="white-section">
     <div class="content-block">
-        
-        <!-- Image column -->
         <div class="image-column">
-            <!-- <p class="image-caption">Bild på mig</p> -->
-            <img src="kuvat/kuva1.jpeg" alt="Bild på mig" width="500" height="800" />
+            <img src="kuvat/kuva1.jpeg" alt="Bild på mig">
         </div>
         
-        <!-- Text + SVG column -->
         <div class="text-column">
             <h2>Om mig</h2>
-            <p>Här kan du skriva lite om dig själv...</p>
+            <p>Kalligrafi är mycket mer än bara bokstäver. Det är en hobby som ger dig lugn eller det är texter på papper som inspirerar dig varje dag.</p>
+            <p>Här kan du berätta mer om din passion för kalligrafi, din bakgrund och vad som driver dig i ditt hantverk.</p>
 
-            <!-- Your own SVG file -->
             <div class="icon-container">
-                <img src="kuvat\AVlogo.svg" alt="Min ikon" width="200" height="200" />
+                <img src="kuvat/AVlogo.svg" alt="Min logotyp">
             </div>
         </div>
-
     </div>
 </section>
 
-
-<!-- More Sections: beige background on full width section -->
-<section class="beige-block">
+<!-- Extra sektion (beige bakgrund) -->
+<section class="beige-section">
     <div class="content-block">
-        <h2>Mer information</h2>
-        <p>Här kan du lägga till mer text...</p>
+        <div class="text-column">
+            <h2>Upptäck konstformen</h2>
+            <p>Varje projekt är unikt och skapas med omsorg och precision. Från bröllopsinbjudningar till företagslogotyper - jag hjälper dig att förverkliga dina visioner med vacker kalligrafi.</p>
+        </div>
     </div>
 </section>
 

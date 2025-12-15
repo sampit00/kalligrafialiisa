@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brudparet - Kalligrafi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #4a4a4a;
+            line-height: 1.6;
+            padding-top: 60px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            color: #4a4a4a;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 20px 25px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #a8936f;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(250, 248, 245, 0.98);
+            min-width: 200px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown-content a {
+            padding: 12px 20px;
+            font-size: 14px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Hero Section with Background Image */
+        .hero {
+            background: linear-gradient(rgba(168, 147, 111, 0.7), rgba(168, 147, 111, 0.7)),
+                        url('kuvat/taustakuvabröllop.jpeg');
+            background-size: cover;
+            background-position: center;
+            padding: 150px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Sub-navigation for Brudparet sections */
+        .sub-nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 60px;
+            z-index: 100;
+        }
+
+        .sub-nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+
+        .sub-nav li {
+            margin: 0;
+        }
+
+        .sub-nav a {
+            color: #4a4a4a;
+            text-decoration: none;
+            padding: 15px 30px;
+            display: block;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .sub-nav a:hover,
+        .sub-nav a.active {
+            color: #a8936f;
+            border-bottom-color: #a8936f;
+        }
+
+        /* Content Section */
+        .content-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem;
+            color: #a8936f;
+            margin-bottom: 30px;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Service Grid */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .service-item {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(168, 147, 111, 0.2);
+        }
+
+        .service-item h3 {
+            font-size: 1.5rem;
+            color: #a8936f;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .service-item p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .service-item a {
+            display: inline-block;
+            padding: 10px 25px;
+            background: #a8936f;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .service-item a:hover {
+            background: #8f7a5d;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
+            padding: 80px 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: #a8936f;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #a8936f;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            transition: background 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: #8f7a5d;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                padding: 10px 0;
+            }
+
+            nav li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+            }
+
+            .hero {
+                padding: 100px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .sub-nav ul {
+                flex-direction: column;
+            }
+
+            .sub-nav a {
+                padding: 12px 20px;
+                border-bottom: none;
+                border-left: 3px solid transparent;
+            }
+
+            .sub-nav a:hover,
+            .sub-nav a.active {
+                border-left-color: #a8936f;
+                border-bottom-color: transparent;
+            }
+
+            .content-section {
+                padding: 0 20px;
+                margin: 60px auto;
+            }
+
+            .content-section h2 {
+                font-size: 2rem;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Main Navigation -->
+<nav>
+    <ul>
+        <li><a href="index.html">Startsida</a></li>
+        <li class="dropdown">
+            <a href="tjanster.html">Tjänster</a>
+            <div class="dropdown-content">
+                <a href="brudparet.html">Brudparet</a>
+                <a href="foretagare.html">Företagare</a>
+                <a href="annat.html">Annat</a>
+            </div>
+        </li>
+        <li><a href="kurser.html">Kurser</a></li>
+        <li><a href="galleri.html">Galleri</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Brudparet</h1>
+    <p>Bröllopet är en av de finaste dagarna i livet. Därför vill man satsa på och göra fina minnen. Kalligrafi med sin unikhet bla bla bla...</p>
+</section>
+
+<!-- Sub Navigation -->
+<nav class="sub-nav">
+    <ul>
+        <li><a href="fardiga-mallar.html">Färdiga mallar</a></li>
+        <li><a href="unika-placeringskort.html">Unika placeringskort</a></li>
+        <li><a href="annat-brudpar.html">Annat</a></li>
+        <li><a href="prislista.html">Prislista</a></li>
+    </ul>
+</nav>
+
+<!-- Content Section -->
+<section class="content-section">
+    <h2>Vad kan jag erbjuda?</h2>
+    <p>Från inbjudningar till bordskort - jag hjälper dig att skapa de perfekta detaljerna för er stora dag.</p>
+
+    <div class="service-grid">
+        <div class="service-item">
+            <h3>Färdiga mallar</h3>
+            <p>Välj bland mina färdiga mallar och anpassa efter era önskemål.</p>
+            <a href="fardiga-mallar.html">Se mallar</a>
+        </div>
+
+        <div class="service-item">
+            <h3>Unika placeringskort</h3>
+            <p>Skapa personliga placeringskort som gästerna kommer att minnas.</p>
+            <a href="unika-placeringskort.html">Läs mer</a>
+        </div>
+
+        <div class="service-item">
+            <h3>Annat</h3>
+            <p>Menyer, tackskort, program och allt annat ni behöver för bröllopet.</p>
+            <a href="annat-brudpar.html">Utforska</a>
+        </div>
+
+        <div class="service-item">
+            <h3>Prislista</h3>
+            <p>Se priser och paket för alla bröllopskalligrafitjänster.</p>
+            <a href="prislista.html">Se priser</a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <h2>Redo att börja planera?</h2>
+    <p>Kontakta mig så diskuterar vi hur vi kan göra er bröllopsdröm till verklighet.</p>
+    <a href="kontakt.html" class="cta-btn">Kontakta mig</a>
+</section>
+
+</body>
+</html>

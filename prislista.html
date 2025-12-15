@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prislista - Bröllop - Kalligrafi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #4a4a4a;
+            line-height: 1.6;
+            padding-top: 60px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            color: #4a4a4a;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 20px 25px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #a8936f;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(250, 248, 245, 0.98);
+            min-width: 200px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown-content a {
+            padding: 12px 20px;
+            font-size: 14px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Sub Navigation */
+        .sub-nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 60px;
+            z-index: 100;
+        }
+
+        .sub-nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+
+        .sub-nav a {
+            color: #4a4a4a;
+            text-decoration: none;
+            padding: 15px 30px;
+            display: block;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .sub-nav a:hover,
+        .sub-nav a.active {
+            color: #a8936f;
+            border-bottom-color: #a8936f;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #a8936f;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .pricing-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .pricing-intro h2 {
+            font-size: 2rem;
+            color: #a8936f;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .pricing-intro p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Price Table */
+        .price-table {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .price-table-header {
+            background: linear-gradient(135deg, #a8936f 0%, #8f7a5d 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+
+        .price-table-header h3 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .price-table-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 30px;
+            border-bottom: 1px solid #f5f1eb;
+            align-items: center;
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+        }
+
+        .price-row:hover {
+            background: #faf8f5;
+        }
+
+        .price-item {
+            flex: 1;
+        }
+
+        .price-item h4 {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            margin-bottom: 5px;
+            font-weight: 400;
+        }
+
+        .price-item p {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .price-value {
+            font-size: 1.3rem;
+            color: #a8936f;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* Package Cards */
+        .packages-section {
+            margin: 80px 0;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .package-card.featured {
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
+            border: 2px solid #a8936f;
+        }
+
+        .package-badge {
+            display: inline-block;
+            background: #a8936f;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        .package-card h3 {
+            font-size: 1.8rem;
+            color: #a8936f;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            color: #4a4a4a;
+            margin-bottom: 10px;
+        }
+
+        .package-price span {
+            font-size: 1rem;
+            color: #999;
+        }
+
+        .package-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .package-card li {
+            padding: 10px 0;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .package-card li:before {
+            content: "✓ ";
+            color: #a8936f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .package-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #a8936f;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+        }
+
+        .package-btn:hover {
+            background: #8f7a5d;
+        }
+
+        /* Note Section */
+        .note-section {
+            background: #faf8f5;
+            padding: 40px;
+            border-radius: 10px;
+            margin: 60px 0;
+        }
+
+        .note-section h3 {
+            font-size: 1.5rem;
+            color: #a8936f;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .note-section p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: #a8936f;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #a8936f;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            transition: background 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: #8f7a5d;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                padding: 10px 0;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+            }
+
+            .sub-nav ul {
+                flex-direction: column;
+            }
+
+            .sub-nav a {
+                border-bottom: none;
+                border-left: 3px solid transparent;
+            }
+
+            .sub-nav a:hover,
+            .sub-nav a.active {
+                border-left-color: #a8936f;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .pricing-section {
+                padding: 0 20px;
+            }
+
+            .price-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .price-value {
+                font-size: 1.5rem;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Main Navigation -->
+<nav>
+    <ul>
+        <li><a href="index.html">Startsida</a></li>
+        <li class="dropdown">
+            <a href="tjanster.html">Tjänster</a>
+            <div class="dropdown-content">
+                <a href="brudparet.html">Brudparet</a>
+                <a href="foretagare.html">Företagare</a>
+                <a href="annat.html">Annat</a>
+            </div>
+        </li>
+        <li><a href="kurser.html">Kurser</a></li>
+        <li><a href="galleri.html">Galleri</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+</nav>
+
+<!-- Sub Navigation -->
+<nav class="sub-nav">
+    <ul>
+        <li><a href="fardiga-mallar.html">Färdiga mallar</a></li>
+        <li><a href="unika-placeringskort.html">Unika placeringskort</a></li>
+        <li><a href="annat-brudpar.html">Annat</a></li>
+        <li><a href="prislista.html" class="active">Prislista</a></li>
+    </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <h1>Prislista</h1>
+    <p>Transparenta priser för alla tjänster. Alla priser är vägledande och kan anpassas efter era önskemål.</p>
+</section>
+
+<!-- Pricing Section -->
+<section class="pricing-section">
+    
+    <div class="pricing-intro">
+        <h2>Individuella produkter</h2>
+        <p>Välj precis det ni behöver eller kombinera för ett komplett bröllopspaket.</p>
+    </div>
+
+    <!-- Inbjudningar & Kort -->
+    <div class="price-table">
+        <div class="price-table-header">
+            <h3>Inbjudningar & Kort</h3>
+            <p>Priser per styck</p>
+        </div>
+        <div class="price-row">
+            <div class="price-item">
+                <h4>Inbjudningskort</h4>
+                <p>Standard storlek med kuvert</p>
+            </div>
+            <div class="price-value">från 45 kr</div>
+        </div>
+        <div class="price-row">
+            <div class="price-item">
+                <h4>Placeringskort</h4>
+                <p>Personliga namn handskrivna</p>
+            </div>
+            <div class="price-value">från 25 kr</div>
+        </div>
+        <div class="price-row">
+            <div class="price-item">
+                <h4>Menykort</h4>
+                <p>Per gäst eller per bord</p>
+            </div>
+            <div class="price-value">från 30 kr</div>
+        </div>
+        <div class="price-row">
+            <div class="price-item">
+                <h4>Tackskort</h4>
+                <p>Efter bröllopet</p>
+            </div>
+            <div class="price-value">från 35 kr</div>
+        </div>
+    </div>
+
+    <!-- Skyltar & Större projekt -->
+    <div class="price-table">
+        <div class="price-table-header">
+            <h3>Skyltar & Större projekt</h3>
+            <p>Unika prisuppgifter</p>
+        </div>
+        <div class="price-row">
+            <div class="price-item">
+                <h4>Välkomstskylt</h4>
+                <p>Stor skylt i trä eller akryl</p>
+            </div>
+            <div class="price-value">från 800 kr</div>
+        </div>
+        <div class="price-row">
+            <div class="price-item">
+                <h4>Sittplansskylt</h4>
+                <p>Alla gäster och bordsplacering</p>
+            </div>
+            <div class="price-value">från 1200 kr</div>
+        </div>
+        <div class="price-row">
+            <div class="price-item">
+                <h4>Program</h4>
+                <p>Ceremoni eller festprogram</p>
+            </div>
+            <div class="price-value">från 40 kr</div>
+        </div>
+        <div class="price-row">
+            <div class="price-item">
+                <h4>Kuvertadressering</h4>
+                <p>Handskriven adress</p>
+            </div>
+            <div class="price-value">från 15 kr</div>
+        </div>
+    </div>
+
+    <!-- Paket -->
+    <div class="pricing-intro">
+        <h2>Paket</h2>
+        <p>Spara pengar genom att välja ett av våra färdiga paket.</p>
+    </div>
+
+    <div class="packages-grid">
+        
+        <div class="package-card">
+            <h3>Bas-paket</h3>
+            <div class="package-price">4500 kr <span>ca</span></div>
+            <ul>
+                <li>50 inbjudningskort med kuvert</li>
+                <li>50 placeringskort</li>
+                <li>Välkomstskylt</li>
+                <li>Tackskort (design)</li>
+            </ul>
+            <a href="kontakt.html" class="package-btn">Välj paket</a>
+        </div>
+
+        <div class="package-card featured">
+            <span class="package-badge">Populärast</span>
+            <h3>Standard-paket</h3>
+            <div class="package-price">7800 kr <span>ca</span></div>
+            <ul>
+                <li>75 inbjudningskort med kuvert</li>
+                <li>75 placeringskort</li>
+                <li>75 menykort</li>
+                <li>Välkomstskylt</li>
+                <li>Sittplansskylt</li>
+                <li>50 tackskort</li>
+            </ul>
+            <a href="kontakt.html" class="package-btn">Välj paket</a>
+        </div>
+
+        <div class="package-card">
+            <h3>Premium-paket</h3>
+            <div class="package-price">12500 kr <span>ca</span></div>
+            <ul>
+                <li>100 inbjudningskort med kuvert</li>
+                <li>100 placeringskort (exklusivt material)</li>
+                <li>100 menykort</li>
+                <li>Välkomstskylt</li>
+                <li>Sittplansskylt</li>
+                <li>Program (100 st)</li>
+                <li>Kuvertadressering (100 st)</li>
+                <li>75 tackskort</li>
+            </ul>
+            <a href="kontakt.html" class="package-btn">Välj paket</a>
+        </div>
+
+    </div>
+
+    <!-- Note Section -->
+    <div class="note-section">
+        <h3>Bra att veta</h3>
+        <p><strong>Alla priser är vägledande</strong> och slutpriset beror på material, storlek, komplexitet och kvantitet.</p>
+        <p><strong>Minimumbeställning:</strong> För vissa produkter finns en minimumbeställning på 25-50 st.</p>
+        <p><strong>Leveranstid:</strong> Räkna med 4-8 veckor från godkänd design till leverans, beroende på projektets omfattning.</p>
+        <p><strong>Skräddarsydda lösningar:</strong> Behöver ni något som inte finns med? Kontakta mig så skapar vi en offert som passar era önskemål.</p>
+    </div>
+
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Redo att boka?</h2>
+    <p>Kontakta mig för en kostnadsfri offert anpassad efter era önskemål.</p>
+    <a href="kontakt.html" class="cta-btn">Begär offert</a>
+</section>
+
+</body>
+</html>

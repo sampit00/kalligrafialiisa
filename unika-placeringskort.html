@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unika placeringskort - Kalligrafi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #4a4a4a;
+            line-height: 1.6;
+            padding-top: 60px;
+        }
+
+        /* Navigation - Same as other pages */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            color: #4a4a4a;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 20px 25px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #a8936f;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(250, 248, 245, 0.98);
+            min-width: 200px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown-content a {
+            padding: 12px 20px;
+            font-size: 14px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Sub Navigation */
+        .sub-nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 60px;
+            z-index: 100;
+        }
+
+        .sub-nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+
+        .sub-nav a {
+            color: #4a4a4a;
+            text-decoration: none;
+            padding: 15px 30px;
+            display: block;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .sub-nav a:hover,
+        .sub-nav a.active {
+            color: #a8936f;
+            border-bottom-color: #a8936f;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #a8936f;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Content Section */
+        .content-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .section-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-intro h2 {
+            font-size: 2.5rem;
+            color: #a8936f;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .section-intro p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        /* Examples Grid */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .example-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .example-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #f5f1eb 0%, #faf8f5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1rem;
+        }
+
+        .example-info {
+            padding: 25px;
+        }
+
+        .example-info h3 {
+            font-size: 1.4rem;
+            color: #4a4a4a;
+            margin-bottom: 10px;
+        }
+
+        .example-info p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
+            padding: 80px 40px;
+            margin: 80px 0;
+        }
+
+        .process-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-container h2 {
+            font-size: 2.5rem;
+            color: #a8936f;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #a8936f;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            color: #4a4a4a;
+            margin-bottom: 10px;
+        }
+
+        .process-step p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: #a8936f;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #a8936f;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            transition: background 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: #8f7a5d;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                padding: 10px 0;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+            }
+
+            .sub-nav ul {
+                flex-direction: column;
+            }
+
+            .sub-nav a {
+                border-bottom: none;
+                border-left: 3px solid transparent;
+            }
+
+            .sub-nav a:hover,
+            .sub-nav a.active {
+                border-left-color: #a8936f;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .content-section {
+                padding: 0 20px;
+            }
+
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Main Navigation -->
+<nav>
+    <ul>
+        <li><a href="index.html">Startsida</a></li>
+        <li class="dropdown">
+            <a href="tjanster.html">Tjänster</a>
+            <div class="dropdown-content">
+                <a href="brudparet.html">Brudparet</a>
+                <a href="foretagare.html">Företagare</a>
+                <a href="annat.html">Annat</a>
+            </div>
+        </li>
+        <li><a href="kurser.html">Kurser</a></li>
+        <li><a href="galleri.html">Galleri</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+</nav>
+
+<!-- Sub Navigation -->
+<nav class="sub-nav">
+    <ul>
+        <li><a href="fardiga-mallar.html">Färdiga mallar</a></li>
+        <li><a href="unika-placeringskort.html" class="active">Unika placeringskort</a></li>
+        <li><a href="annat-brudpar.html">Annat</a></li>
+        <li><a href="prislista.html">Prislista</a></li>
+    </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <h1>Unika placeringskort</h1>
+    <p>Skapa personliga placeringskort som gästerna kommer att minnas och kanske till och med ta hem som ett minne från er stora dag.</p>
+</section>
+
+<!-- Content Section -->
+<section class="content-section">
+    <div class="section-intro">
+        <h2>Personliga detaljer som gör skillnad</h2>
+        <p>Varje placeringskort är skapat med hand och kärlek. Välj stil, färg och form som passar ert bröllop perfekt.</p>
+    </div>
+
+    <div class="examples-grid">
+        <div class="example-card">
+            <div class="example-image">[Bild: Klassiska kort]</div>
+            <div class="example-info">
+                <h3>Klassiska kort</h3>
+                <p>Tidlösa placeringskort i elegant kalligrafi på fint papper.</p>
+            </div>
+        </div>
+
+        <div class="example-card">
+            <div class="example-image">[Bild: Akrylkort]</div>
+            <div class="example-info">
+                <h3>Akrylkort</h3>
+                <p>Moderna kort i genomskinlig akryl med guldinlägg.</p>
+            </div>
+        </div>
+
+        <div class="example-card">
+            <div class="example-image">[Bild: Träkort]</div>
+            <div class="example-info">
+                <h3>Träkort</h3>
+                <p>Rustika kort i naturligt trä för lantlig charm.</p>
+            </div>
+        </div>
+
+        <div class="example-card">
+            <div class="example-image">[Bild: Marmorkort]</div>
+            <div class="example-info">
+                <h3>Marmorkort</h3>
+                <p>Lyxiga kort med marmoreffekt och gulddetaljer.</p>
+            </div>
+        </div>
+
+        <div class="example-card">
+            <div class="example-image">[Bild: Vaxsigill]</div>
+            <div class="example-info">
+                <h3>Med vaxsigill</h3>
+                <p>Klassiska kort förskönade med vackra vaxsigill.</p>
+            </div>
+        </div>
+
+        <div class="example-card">
+            <div class="example-image">[Bild: Formskurna]</div>
+            <div class="example-info">
+                <h3>Formskurna</h3>
+                <p>Unika former som löv, hjärtan eller andra motiv.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="process-section">
+    <div class="process-container">
+        <h2>Så går det till</h2>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Konsultation</h3>
+                <p>Vi diskuterar era önskemål, tema och stil för bröllopet.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Design</h3>
+                <p>Jag skapar förslag på design och material att välja mellan.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Godkännande</h3>
+                <p>Ni godkänner designen och vi går vidare med produktion.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Leverans</h3>
+                <p>Era unika placeringskort levereras i god tid före bröllopet.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Redo att skapa era unika placeringskort?</h2>
+    <p>Kontakta mig så börjar vi planera de perfekta detaljerna för ert bröllop.</p>
+    <a href="kontakt.html" class="cta-btn">Kontakta mig</a>
+</section>
+
+</body>
+</html>
