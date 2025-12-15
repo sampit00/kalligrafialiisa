@@ -1,0 +1,123 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 15px;
+    display: block;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Video Section */
+.video-section {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.video-section video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+}
+
+/* General resets and nav styles omitted for brevity (keep your existing ones) */
+
+/* Make sections full width */
+section {
+    width: 100%;
+}
+
+/* Content block: center content, limit width */
+.content-block {
+    max-width: 1000px;
+    margin: auto;
+    padding: 60px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Background color classes on the full-width section */
+.lightblue-block {
+    background-color: lightblue;
+}
+
+/* Other background colors you want can follow this pattern */
+.beige-block {
+    /* background-color: beige; */
+    background-color: rgba(241, 233, 227, 0.15)
+}
+
+.violet-block {
+    background-color: rgba(224, 186, 255, 0.15);
+}
+
+
+
+/* Make sure body padding accounts for fixed nav */
+body {
+    padding-top: 60px;
+    font-family: Arial, sans-serif;
+}
+
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 2px 6px rgba(223, 193, 248, 0.15);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .image-grid img:hover {
+    transform: scale(1.05);
+  }
+  
