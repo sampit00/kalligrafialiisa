@@ -116,8 +116,32 @@ nav a:hover {
     position: relative;
 }
 
+.dropdown > a {
+    position: relative;
+    padding-right: 35px !important;
+}
+
+.dropdown > a::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-image: url('design_details/nib_downwards_arrow.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.3s ease;
+}
+
+.dropdown.active > a::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
 .dropdown-content {
-    display: none;
+    display: block;
     position: absolute;
     top: 100%;
     left: 0;
@@ -125,6 +149,15 @@ nav a:hover {
     min-width: 200px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 8px 8px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.dropdown.active .dropdown-content {
+    max-height: 500px;
+    opacity: 1;
 }
 
 .dropdown-content a {
@@ -132,9 +165,6 @@ nav a:hover {
     font-size: 14px;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
 
 /* Sub Navigation (för Brudparet-sidor) */
 .sub-nav {
@@ -1496,13 +1526,28 @@ nav a:hover {
         max-height: 500px;
     }
 
+    .dropdown > a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+    
     .dropdown > a::after {
-        content: " ▼";
-        font-size: 0.8rem;
+        content: "";
+        position: static;
+        transform: none;
+        width: 16px;
+        height: 16px;
+        background-image: url('design_details/nib_downwards_arrow.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: transform 0.3s ease;
     }
 
     .dropdown.active > a::after {
-        content: " ▲";
+        transform: rotate(180deg);
     }
 
     .sub-nav ul {

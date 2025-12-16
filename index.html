@@ -27,8 +27,8 @@
             <li class="dropdown">
                 <a href="tjanster.html">Tjänster</a>
                 <div class="dropdown-content">
-                    <a href="brudparet.html">Brudpar</a>
-                    <a href="foretagare.html">Företag</a>
+                    <a href="brudparet.html">Brudparet</a>
+                    <a href="foretagare.html">Företagare</a>
                     <a href="annat.html">Annat</a>
                 </div>
             </li>
@@ -89,17 +89,32 @@
         navMenu.classList.toggle('active');
     });
 
-    // Handle dropdown on mobile - toggle open/close
+    // Handle dropdown - toggle open/close on all screen sizes
     const dropdownLinks = document.querySelectorAll('.dropdown > a');
     dropdownLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            if (window.innerWidth <= 800) {
-                e.preventDefault();
-                e.stopPropagation();
-                // Toggle dropdown - stäng/öppna
-                link.parentElement.classList.toggle('active');
-            }
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Close other dropdowns first
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                if (dropdown !== link.parentElement) {
+                    dropdown.classList.remove('active');
+                }
+            });
+            
+            // Toggle this dropdown
+            link.parentElement.classList.toggle('active');
         });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        }
     });
 
     // Close menu ONLY when clicking on dropdown items or regular links
