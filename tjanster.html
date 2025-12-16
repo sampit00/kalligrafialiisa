@@ -4,347 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tjänster - Kalligrafi</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            color: #4a4a4a;
-            line-height: 1.6;
-            padding-top: 60px;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(250, 248, 245, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-            margin: 0;
-        }
-
-        nav li {
-            position: relative;
-        }
-
-        nav a {
-            color: #4a4a4a;
-            text-decoration: none;
-            font-size: 16px;
-            padding: 20px 25px;
-            display: block;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #a8936f;
-        }
-
-        /* Dropdown */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(250, 248, 245, 0.98);
-            min-width: 200px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 0 0 8px 8px;
-        }
-
-        .dropdown-content a {
-            padding: 12px 20px;
-            font-size: 14px;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
-            padding: 100px 20px 80px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            color: #a8936f;
-            font-weight: 300;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Service Cards Container */
-        .services-container {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 0 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-        }
-
-        /* Circular Service Card */
-        .service-card {
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .service-circle {
-            width: 280px;
-            height: 280px;
-            margin: 0 auto 30px;
-            border-radius: 50%;
-            background: #fff;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            transition: box-shadow 0.3s ease;
-        }
-
-        .service-card:hover .service-circle {
-            box-shadow: 0 15px 50px rgba(168, 147, 111, 0.3);
-        }
-
-        /* Different background patterns for each circle */
-        .service-circle.brudparet {
-            background: linear-gradient(135deg, #fff9f5 0%, #ffffff 100%);
-        }
-
-        .service-circle.foretagare {
-            background: linear-gradient(135deg, #f5f9ff 0%, #ffffff 100%);
-        }
-
-        .service-circle.annat {
-            background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%);
-        }
-
-        .service-circle h3 {
-            font-size: 1.8rem;
-            color: #a8936f;
-            margin-bottom: 15px;
-            font-weight: 400;
-        }
-
-        .service-circle p {
-            font-size: 0.95rem;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .service-link {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 30px;
-            background: #a8936f;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: background 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        .service-link:hover {
-            background: #8f7a5d;
-        }
-
-        /* Contact Form Section */
-        .contact-section {
-            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
-            padding: 80px 20px;
-            margin-top: 80px;
-        }
-
-        .contact-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .contact-container h2 {
-            font-size: 2.5rem;
-            color: #a8936f;
-            text-align: center;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #4a4a4a;
-            font-size: 1rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: 'Georgia', serif;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #a8936f;
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: #a8936f;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            font-family: 'Georgia', serif;
-        }
-
-        .submit-btn:hover {
-            background: #8f7a5d;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                padding: 10px 0;
-            }
-
-            nav li {
-                width: 100%;
-                text-align: center;
-            }
-
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .services-container {
-                grid-template-columns: 1fr;
-                gap: 60px;
-                padding: 0 20px;
-                margin: 60px auto;
-            }
-
-            .service-circle {
-                width: 250px;
-                height: 250px;
-                padding: 30px;
-            }
-
-            .service-circle h3 {
-                font-size: 1.5rem;
-            }
-
-            .contact-container h2 {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding-top: 50px;
-            }
-
-            nav a {
-                padding: 15px 20px;
-                font-size: 14px;
-            }
-
-            .hero {
-                padding: 60px 20px 50px;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .service-circle {
-                width: 220px;
-                height: 220px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- Navigation -->
 <nav>
-    <ul>
-        <li><a href="index.html">Startsida</a></li>
-        <li class="dropdown">
-            <a href="tjanster.html">Tjänster</a>
-            <div class="dropdown-content">
-                <a href="brudparet.html">Brudparet</a>
-                <a href="foretagare.html">Företagare</a>
-                <a href="annat.html">Annat</a>
-            </div>
-        </li>
-        <li><a href="kurser.html">Kurser</a></li>
-        <li><a href="galleri.html">Galleri</a></li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-    </ul>
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="kuvat/AVlogo.svg" alt="Kalligrafi Logotyp">
+            </a>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Meny">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul id="nav-menu">
+            <li class="dropdown">
+                <a href="tjanster.html">Tjänster</a>
+                <div class="dropdown-content">
+                    <a href="brudparet.html">Brudpar</a>
+                    <a href="foretagare.html">Företag</a>
+                    <a href="annat.html">Annat</a>
+                </div>
+            </li>
+            <li><a href="kurser.html">Kurser</a></li>
+            <li><a href="galleri.html">Galleri</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </div>
 </nav>
 
 <!-- Hero Section -->
@@ -414,6 +106,52 @@
         </form>
     </div>
 </section>
+
+<script>
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Handle dropdown on mobile - toggle open/close
+    const dropdownLinks = document.querySelectorAll('.dropdown > a');
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (window.innerWidth <= 800) {
+                e.preventDefault();
+                e.stopPropagation();
+                // Toggle dropdown - stäng/öppna
+                link.parentElement.classList.toggle('active');
+            }
+        });
+    });
+
+    // Close menu ONLY when clicking on dropdown items or regular links
+    const navLinks = document.querySelectorAll('#nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (window.innerWidth <= 800 && !link.parentElement.classList.contains('dropdown')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    });
+
+    // Close menu when clicking dropdown links
+    const dropdownItems = document.querySelectorAll('.dropdown-content a');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', () => {
+            if (window.innerWidth <= 800) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

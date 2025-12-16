@@ -4,417 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kurser - Kalligrafi</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            color: #4a4a4a;
-            line-height: 1.6;
-            padding-top: 60px;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(250, 248, 245, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-            margin: 0;
-        }
-
-        nav li {
-            position: relative;
-        }
-
-        nav a {
-            color: #4a4a4a;
-            text-decoration: none;
-            font-size: 16px;
-            padding: 20px 25px;
-            display: block;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #a8936f;
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(250, 248, 245, 0.98);
-            min-width: 200px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 0 0 8px 8px;
-        }
-
-        .dropdown-content a {
-            padding: 12px 20px;
-            font-size: 14px;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* Hero */
-        .hero {
-            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
-            padding: 100px 20px 80px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            color: #a8936f;
-            font-weight: 300;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        /* Content Section */
-        .content-section {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 0 40px;
-        }
-
-        .intro-text {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .intro-text h2 {
-            font-size: 2.5rem;
-            color: #a8936f;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .intro-text p {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto 20px;
-            line-height: 1.8;
-        }
-
-        /* Course Cards */
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
-        }
-
-        .course-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .course-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(168, 147, 111, 0.2);
-        }
-
-        .course-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #f5f1eb 0%, #faf8f5 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #a8936f;
-        }
-
-        .course-content {
-            padding: 35px;
-        }
-
-        .course-label {
-            display: inline-block;
-            padding: 5px 15px;
-            background: #a8936f;
-            color: white;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-        }
-
-        .course-content h3 {
-            font-size: 1.8rem;
-            color: #a8936f;
-            margin-bottom: 15px;
-            font-weight: 400;
-        }
-
-        .course-content p {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .course-details {
-            margin: 20px 0;
-            padding: 20px 0;
-            border-top: 1px solid #f5f1eb;
-            border-bottom: 1px solid #f5f1eb;
-        }
-
-        .course-detail-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-            color: #666;
-        }
-
-        .course-detail-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .course-detail-item span {
-            font-weight: bold;
-            color: #a8936f;
-            margin-right: 8px;
-        }
-
-        .course-price {
-            font-size: 2rem;
-            color: #a8936f;
-            font-weight: 500;
-            margin: 20px 0;
-        }
-
-        .course-btn {
-            display: inline-block;
-            width: 100%;
-            padding: 15px;
-            background: #a8936f;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .course-btn:hover {
-            background: #8f7a5d;
-        }
-
-        /* Info Section */
-        .info-section {
-            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
-            padding: 60px 40px;
-            border-radius: 10px;
-            margin: 80px 0;
-        }
-
-        .info-section h2 {
-            font-size: 2rem;
-            color: #a8936f;
-            margin-bottom: 30px;
-            font-weight: 300;
-            text-align: center;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .info-item {
-            text-align: center;
-        }
-
-        .info-icon {
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 1.8rem;
-            color: #a8936f;
-        }
-
-        .info-item h3 {
-            font-size: 1.3rem;
-            color: #4a4a4a;
-            margin-bottom: 10px;
-            font-weight: 400;
-        }
-
-        .info-item p {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.7;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            color: #a8936f;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: #a8936f;
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            transition: background 0.3s ease;
-        }
-
-        .cta-btn:hover {
-            background: #8f7a5d;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                padding: 10px 0;
-            }
-
-            nav li {
-                width: 100%;
-                text-align: center;
-            }
-
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-            }
-
-            .hero {
-                padding: 80px 20px 60px;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .content-section {
-                padding: 0 20px;
-                margin: 60px auto;
-            }
-
-            .intro-text h2 {
-                font-size: 2rem;
-            }
-
-            .courses-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding-top: 50px;
-            }
-
-            nav a {
-                padding: 15px 20px;
-                font-size: 14px;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .course-content {
-                padding: 25px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- Navigation -->
 <nav>
-    <ul>
-        <li><a href="index.html">Startsida</a></li>
-        <li class="dropdown">
-            <a href="tjanster.html">Tjänster</a>
-            <div class="dropdown-content">
-                <a href="brudparet.html">Brudparet</a>
-                <a href="foretagare.html">Företagare</a>
-                <a href="annat.html">Annat</a>
-            </div>
-        </li>
-        <li><a href="kurser.html">Kurser</a></li>
-        <li><a href="galleri.html">Galleri</a></li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-    </ul>
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="kuvat/AVlogo.svg" alt="Kalligrafi Logotyp">
+            </a>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Meny">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul id="nav-menu">
+            <li class="dropdown">
+                <a href="tjanster.html">Tjänster</a>
+                <div class="dropdown-content">
+                    <a href="brudparet.html">Brudpar</a>
+                    <a href="foretagare.html">Företag</a>
+                    <a href="annat.html">Annat</a>
+                </div>
+            </li>
+            <li><a href="kurser.html">Kurser</a></li>
+            <li><a href="galleri.html">Galleri</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </div>
 </nav>
 
 <!-- Hero -->
@@ -641,6 +263,52 @@
     <p>Kontakta mig för att boka en kurs eller för att höra mer om kommande kurstillfällen. Jag ser fram emot att träffa dig!</p>
     <a href="kontakt.html" class="cta-btn">Kontakta mig</a>
 </section>
+
+<script>
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Handle dropdown on mobile - toggle open/close
+    const dropdownLinks = document.querySelectorAll('.dropdown > a');
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (window.innerWidth <= 800) {
+                e.preventDefault();
+                e.stopPropagation();
+                // Toggle dropdown - stäng/öppna
+                link.parentElement.classList.toggle('active');
+            }
+        });
+    });
+
+    // Close menu ONLY when clicking on dropdown items or regular links
+    const navLinks = document.querySelectorAll('#nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (window.innerWidth <= 800 && !link.parentElement.classList.contains('dropdown')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    });
+
+    // Close menu when clicking dropdown links
+    const dropdownItems = document.querySelectorAll('.dropdown-content a');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', () => {
+            if (window.innerWidth <= 800) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
