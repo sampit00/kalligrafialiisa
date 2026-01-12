@@ -30,7 +30,7 @@ nav {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 40px; /* Left 10px, right 40 px */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -38,7 +38,8 @@ nav {
 
 .logo {
     display: flex;
-    align-items: center;
+    align-items: left;
+    margin-left: -30px;
 }
 
 .logo a {
@@ -262,6 +263,50 @@ nav a:hover {
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.8;
+}
+
+
+/* ===================================
+   HERO IMAGE SECTION
+   =================================== */
+.hero-image {
+    max-width: 1200px;
+    margin: 80px auto 0;
+    padding: 0 40px;
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;  /* ← Add this - adjust the value to your preference */
+    display: block;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+    .hero-image {
+        margin: 60px auto 0;
+        padding: 0 20px;
+    }
+    
+    .hero-image img {
+        max-height: 300px;  /* Smaller on tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-image {
+        margin: 40px auto 0;
+        padding: 0 10px;
+    }
+    
+    .hero-image img {
+        max-height: 200px;  /* Even smaller on phones */
+    }
 }
 
 /* ===================================
