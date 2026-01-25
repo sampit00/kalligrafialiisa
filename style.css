@@ -357,7 +357,7 @@ nav a:hover {
 }
 
 .icon-container img {
-    width: 200px;
+    width: 150px;
     height: auto;
 }
 
@@ -1281,15 +1281,16 @@ nav a:hover {
 .contact-section {
     max-width: 1200px;
     margin: 80px auto;
-    padding: 0 40px;
+    padding: 40px 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
+    background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
 }
 
 .contact-info {
     background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
-    padding: 50px;
+    padding: 30px;
     border-radius: 10px;
 }
 
@@ -1362,6 +1363,11 @@ nav a:hover {
     font-size: 1.3rem;
     color: #a8936f;
     transition: all 0.3s ease;
+}
+
+.social-link img {
+    width: 30px;
+    height: 30px;
 }
 
 .social-link:hover {
