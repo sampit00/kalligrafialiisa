@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brudpar - Kalligrafi</title>
+    <title>Flower - Färdiga mallar - Kalligrafi</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -39,31 +39,58 @@
     </div>
 </nav>
 
-<!-- Hero Image Section -->
-<section class="hero-image">
-    <img src="/design_details/brudparet.png" alt="Brudpar">
-</section>
-
 <!-- Content Section -->
 <section class="content-section">
 
     <div class="intro-text">
-        <h2>Skapa minnesvärda detaljer för er stora dag</h2>
-        <p>Från eleganta inbjudningar till handskrivna placeringskort - jag hjälper er att skapa de perfekta kalligrafiska detaljerna som gör ert bröllop unikt och personligt.</p>
-        <p>Du kan välja från färdiga mallar eller skräddarsy efter dina önskemål.</p>
+        <h2>Flower</h2>
+        <p>Romantisk och blommig stil med vackra detaljer. Välj det paket som passar era behov.</p>
     </div>
 
-    <div class="choice-buttons">
-        <a href="/tjanster/brudpar/fardiga-mallar/" class="choice-btn">Färdiga mallar</a>
-        <a href="/tjanster/brudpar/skraddarsytt/" class="choice-btn">Skräddarsytt</a>
+    <div class="packages-grid">
+        <div class="package-card">
+            <h3>Standard</h3>
+            <p>Grundpaketet med de viktigaste delarna för ert bröllop.</p>
+            <ul class="package-features">
+                <li>Inbjudningskort</li>
+                <li>Kuvert</li>
+            </ul>
+            <a href="/kontakt/" class="package-btn">Välj Standard</a>
+        </div>
+
+        <div class="package-card featured">
+            <h3>Medium</h3>
+            <p>Utökat paket med fler detaljer för en komplett upplevelse.</p>
+            <ul class="package-features">
+                <li>Inbjudningskort</li>
+                <li>Kuvert</li>
+                <li>Placeringskort</li>
+                <li>Menykort</li>
+            </ul>
+            <a href="/kontakt/" class="package-btn">Välj Medium</a>
+        </div>
+
+        <div class="package-card">
+            <h3>Premium</h3>
+            <p>Det kompletta paketet med allt ni behöver för bröllopet.</p>
+            <ul class="package-features">
+                <li>Inbjudningskort</li>
+                <li>Kuvert</li>
+                <li>Placeringskort</li>
+                <li>Menykort</li>
+                <li>Tackskort</li>
+                <li>Program</li>
+            </ul>
+            <a href="/kontakt/" class="package-btn">Välj Premium</a>
+        </div>
     </div>
 
 </section>
 
 <!-- CTA Section -->
 <section class="cta-section">
-    <h2>Redo att börja planera?</h2>
-    <p>Kontakta mig så diskuterar vi hur vi kan göra er bröllopsdröm till verklighet.</p>
+    <h2>Redo att beställa?</h2>
+    <p>Kontakta mig så diskuterar vi detaljerna för ert Flower-paket.</p>
     <a href="/kontakt/" class="cta-btn">Kontakta mig</a>
 </section>
 
@@ -83,14 +110,14 @@
         link.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            
+
             // Close other dropdowns first
             document.querySelectorAll('.dropdown').forEach(dropdown => {
                 if (dropdown !== link.parentElement) {
                     dropdown.classList.remove('active');
                 }
             });
-            
+
             // Toggle this dropdown
             link.parentElement.classList.toggle('active');
         });

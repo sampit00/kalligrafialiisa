@@ -715,6 +715,34 @@ nav a:hover {
     background: #8f7a5d;
 }
 
+/* Choice Buttons */
+.choice-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.choice-btn {
+    display: inline-block;
+    padding: 20px 50px;
+    background: #a8936f;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 200px;
+}
+
+.choice-btn:hover {
+    background: #8f7a5d;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(168, 147, 111, 0.3);
+}
+
 .note-section {
     background: #faf8f5;
     padding: 40px;
