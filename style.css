@@ -1336,6 +1336,7 @@ nav a:hover {
     line-height: 1.8;
 }
 
+
 .contact-item {
     display: flex;
     align-items: center;
@@ -1354,6 +1355,10 @@ nav a:hover {
     font-size: 1.3rem;
     color: #a8936f;
     flex-shrink: 0;
+}
+
+.contact-info > .contact-details {
+    margin-bottom: 15px;
 }
 
 .contact-details h3 {
