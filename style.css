@@ -1034,6 +1034,10 @@ nav a:hover {
     line-height: 1.8;
 }
 
+.intro-text .cta-btn {
+    margin-top: 20px;
+}
+
 .courses-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
