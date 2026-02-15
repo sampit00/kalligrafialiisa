@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontakt - Kalligrafi</title>
+    <title>Tack - Kalligrafi</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -39,83 +39,14 @@
     </div>
 </nav>
 
-<!-- Hero Image Section -->
-<section class="hero-image">
-    <img src="/design_details/kontakt.png" alt="Kontakt">
+<!-- CTA Section as Thank You -->
+<section class="cta-section" style="margin-top: 0; padding: 120px 20px;">
+    <h2>Tack för ditt meddelande!</h2>
+    <p>Jag har mottagit din förfrågan och återkommer så snart jag kan.</p>
+    <a href="/" class="cta-btn">Tillbaka till startsidan</a>
 </section>
-
-<!-- Contact Section -->
-<section class="contact-section">
-    
-    <!-- Contact Info -->
-    <div class="contact-info">
-        <h2>Kontaktinformation</h2>
-
-        <div class="contact-details">
-            <a href="mailto:kalligrafialiisa@gmail.com">kalligrafialiisa@gmail.com</a>
-        </div>
-        <div class="contact-details">
-            <a href="https://instagram.com/kalligrafialiisa" target="_blank">@kalligrafialiisa</a>
-        </div>
-        <div class="contact-details">
-            <p>Säter, Sverige</p>
-        </div>
-
-        <img src="/kuvat/logo.svg" alt="Kalligrafi Aliisa" style="max-width: 200px; margin-top: 1.5em;">
-    </div>
-
-    <!-- Contact Form -->
-    <div class="contact-form">
-        <h2>Skicka ett meddelande</h2>
-        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="4de83d15-395d-43e5-9d5d-f527cebf5984">
-            <input type="hidden" name="subject" value="Ny förfrågan via kalligrafialiisa.se">
-            <input type="hidden" name="from_name" value="Kalligrafi Aliisa - Kontaktformulär">
-
-            <div class="form-group">
-                <label for="name">Namn *</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-
-            <div class="form-group">
-                <label for="email">E-post *</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="message">Meddelande *</label>
-                <textarea id="message" name="message" required placeholder="Berätta lite om ditt projekt eller dina önskemål..."></textarea>
-            </div>
-
-            <button type="submit" class="submit-btn">Skicka meddelande</button>
-        </form>
-        <div id="form-success" style="display: none; text-align: center; padding: 40px 0;">
-            <h2 style="color: #a8936f; font-weight: 300;">Tack för ditt meddelande!</h2>
-            <p style="color: #666; font-size: 1.1rem;">Jag har mottagit din förfrågan och återkommer så snart jag kan.</p>
-        </div>
-    </div>
-
-</section>
-
 
 <script>
-    // Handle form submission via fetch
-    const form = document.getElementById('contact-form');
-    const successMsg = document.getElementById('form-success');
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: new FormData(form)
-        });
-
-        if (response.ok) {
-            form.style.display = 'none';
-            successMsg.style.display = 'block';
-        }
-    });
-
     // Hamburger menu toggle
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
@@ -131,14 +62,14 @@
         link.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            
+
             // Close other dropdowns first
             document.querySelectorAll('.dropdown').forEach(dropdown => {
                 if (dropdown !== link.parentElement) {
                     dropdown.classList.remove('active');
                 }
             });
-            
+
             // Toggle this dropdown
             link.parentElement.classList.toggle('active');
         });
