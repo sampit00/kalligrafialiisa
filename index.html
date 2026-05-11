@@ -3,7 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalligrafi - Startsida</title>
+    <title>Kalligrafi Aliisa - Professionell Kalligrafi för Bröllop, Företag & Kurser</title>
+    <meta name="description" content="Professionell kalligrafi i Sverige och Finland. Skräddarsydda bröllopsinbjudningar, placeringskort, företagstjänster och kalligrafikurser. Boka din kalligrafitjänst idag!">
+    <meta name="keywords" content="kalligrafi, bröllopsinbjudningar, placeringskort, kalligrafikurser, företagskalligrafi, handskrivet, Sverige, Finland">
+    <meta name="author" content="Aliisa - Kalligrafi Aliisa">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kalligrafialiisa.com/">
+    <meta property="og:title" content="Kalligrafi Aliisa - Professionell Kalligrafi">
+    <meta property="og:description" content="Skapa vackra minnen med professionell kalligrafi. Bröllop, företag och kurser.">
+    <meta property="og:image" content="https://kalligrafialiisa.com/kuvat/profiilikotisivu.jpeg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://kalligrafialiisa.com/">
+    <meta property="twitter:title" content="Kalligrafi Aliisa - Professionell Kalligrafi">
+    <meta property="twitter:description" content="Skapa vackra minnen med professionell kalligrafi. Bröllop, företag och kurser.">
+    <meta property="twitter:image" content="https://kalligrafialiisa.com/kuvat/profiilikotisivu.jpeg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/kuvat/logo.svg">
+    <link rel="alternate icon" href="/favicon.ico">
+
     <link rel="stylesheet" href="/style.css">
 
     <!-- Google tag (gtag.js) -->
@@ -51,7 +73,7 @@
 
 <!-- Video Section -->
 <section class="video-section">
-    <video autoplay muted loop playsinline>
+    <video autoplay muted loop playsinline preload="metadata" poster="/kuvat/profiilikotisivu.jpeg">
         <source src="/animations/kaliisastartsida.mp4" type="video/mp4">
         Din webbläsare stöder inte videouppspelning.
     </video>
@@ -86,10 +108,13 @@
 
         <div class="social-links">
             <a href="mailto:kalligrafialiisa@gmail.com" class="social-link" title="E-post">
-                <span class="email-icon">📧</span>
+                <svg class="email-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
                 <span>kalligrafialiisa@gmail.com</span>
             </a>
-            <a href="https://instagram.com/kalligrafialiisa" class="social-link" target="_blank" title="Instagram">
+            <a href="https://instagram.com/kalligrafialiisa" class="social-link" target="_blank" rel="noopener noreferrer" title="Instagram">
                 <img src="/design_details/instagramlogo.svg" alt="Instagram">
                 <span>@kalligrafialiisa</span>
             </a>
@@ -157,6 +182,55 @@
         });
     });
 </script>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Kalligrafi Aliisa</h3>
+            <p>Professionell kalligrafi för alla tillfällen</p>
+            <div class="footer-social">
+                <a href="mailto:kalligrafialiisa@gmail.com" aria-label="E-post">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+                <a href="https://instagram.com/kalligrafialiisa" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <img src="/design_details/instagramlogo.svg" alt="Instagram">
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h4>Tjänster</h4>
+            <ul>
+                <li><a href="/tjanster/kurser">Kurser</a></li>
+                <li><a href="/tjanster/brudpar">Brudpar</a></li>
+                <li><a href="/tjanster/foretag">Företag</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Information</h4>
+            <ul>
+                <li><a href="/galleri">Galleri</a></li>
+                <li><a href="/kontakt">Kontakt</a></li>
+                <li><a href="/">Om mig</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Kontakt</h4>
+            <p>kalligrafialiisa@gmail.com</p>
+            <p>@kalligrafialiisa</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Kalligrafi Aliisa. Alla rättigheter förbehållna.</p>
+    </div>
+</footer>
 
 </body>
 </html>
